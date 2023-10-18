@@ -1,0 +1,229 @@
+body {
+    background-color: #f0f0f0; /* kolor tła strony */
+    margin: 0;
+    padding: 100;
+    font-family: Arial, sans-serif;
+}
+
+.background {
+    position: relative;
+    color: white;
+}
+
+/* Dodatkowy element na tło, które będzie rozmyte */
+.background-image {
+    position: absolute; /* Ustalamy pozycję na "absolute" względem kontenera .background */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://pixabay.com/illustrations/compass-map-nautical-antique-4961383/'); /* Bezpośredni link do obrazu na Pixabay */
+    background-size: cover; /* Skalowanie tła, aby wypełnić całe okno */
+    filter: blur(10px); /* Rozmycie tylko tego elementu */
+    z-index: -1; /* Przesunięcie elementu pod zawartość */
+}
+
+/* Stylizacja paska nawigacyjnego */
+.navbar {
+    display: flex;
+    background-color: #007ACC;
+    padding: 0; /* Usunięcie wewnętrznego paddingu paska */
+    width: 100%;
+    justify-content: flex-start; /* Wyrównanie do lewej strony */
+}
+
+/* Stylizacja kolumn w pasku nawigacyjnym */
+.col {
+    width: 100px; /* Stała szerokość kolumn */
+    text-align: center; /* Wyśrodkowanie tekstu w kolumnach */
+    max-width: 20%; /* Maksymalna szerokość kolumn na 20% szerokości paska */
+}
+
+/* Stylizacja przycisków nawigacyjnych */
+.col a {
+    display: block; /* Zamiana diva na blokowy link */
+    padding: 7px;
+    background-color: #007ACC; /* Taki sam kolor jak tło paska */
+    color: white;
+    text-decoration: none; /* Usunięcie podkreślenia odnośnika */
+    transition: background-color 0.3s ease;
+}
+
+.col a:hover {
+    background-color: blue; /* Kolor tła po najechaniu myszką */
+}
+
+h1 {
+    font-size: 32px;
+    color: #333;
+    font-weight: bold;
+    
+}
+
+/* Dla nagłówka h2 */
+h2 {
+    font-size: 24px;
+    color: #333;
+    font-weight: normal;
+    padding-top: 20px;
+}
+
+
+/* Stylizacja głównego kontenera z zawartością */
+.content {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left; /* Wyrównaj zawartość do lewej strony */
+    margin-left: 20px; /* Przesunięcie kontenera w lewo o 20px */
+}
+
+/* Stylizacja listy rozwijanej */
+.content select {
+    margin: 10px 0;
+    padding: 10px;
+    width: calc(40% - 20px); /* 33.33% szerokości kontenera - 20px odstępu między elementami */
+    max-width: 100%;
+}
+
+/* Stylizacja pola wprowadzania danych */
+.content textarea {
+    margin: 10px 0;
+    padding: 10px;
+    width: calc(60% - 20px); /* 33.33% szerokości kontenera - 20px odstępu między elementami */
+    max-width: 100%;
+    height: 150px; /* Domyślna wysokość pola tekstowego */
+}
+
+/* Stylizacja wyników */
+#outputContainer {
+    margin: 10px 0;
+    padding: 10px;
+    width: calc(60% - 20px); /* 33.33% szerokości kontenera - 20px odstępu między elementami */
+    max-width: 100%;
+    height: 150px; /* Domyślna wysokość pola tekstowego */
+}
+
+/* Stylizacja wyboru strefy */
+.input-wrapper {
+    width: 100%;
+    align-items: center; /* Wyrównanie elementów w pionie */
+    margin-bottom: 10px;
+}
+
+.input-wrapper label {
+    display: block;
+    margin-bottom: 5px;
+    align-items: center;
+}
+
+.input-wrapper input[type="radio"] {
+    margin-right: 5px; /* Dodajemy odstęp między polami radio */
+}
+
+#axial1942in, #zonerow1965in, #axial2000in, #formatblin {
+    display: flex; /* Ustawienie elementów w poziomie */
+    align-items: center; /* Wyrównanie elementów w pionie */
+}
+
+#axial1942out, #zonerow1965out, #axial2000out, #formatblout {
+    display: none; /* Ustawienie elementów w poziomie */
+    align-items: center; /* Wyrównanie elementów w pionie */
+}
+
+#axial1942in label, #zonerow1965in label, #axial2000in label, #formatblin label, #axial1942out label, #zonerow1965out label, #axial2000out label, #formatblout label, .input-wrapper label {
+    margin-right: 20px; /* Dodajemy odstęp między etykietami */
+    display: flex; /* Ustawienie etykiet jako kontenera flex */
+}
+
+/* Dodatkowe style dla kontenera input-container */
+.input-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center; /* Centrowanie w pionie */
+}
+
+.informator {
+    width: 16px;
+    height: 16px;
+    background-color: rgb(231, 230, 230);
+    border: 2px solid white;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    margin-left: 10px;
+}
+
+.informator::before {
+    content: 'i';
+    position: absolute;
+    color: white;
+    position: center;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#tooltip1 {
+    display: none;
+}
+
+#tooltip2 {
+    display: none;
+}
+
+.tooltip {
+    position: absolute;
+    margin-left: 340px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+    min-width: 50px; /* Minimalna szerokość */
+    max-width: 250px; /* Maksymalna szerokość */
+    min-height: 10px; /* Minimalna wysokość */
+    max-height: 120px; /* Maksymalna wysokość */
+    padding: 10px 10px;
+    font-size: 11px;
+    opacity: 0.5;
+}
+
+.tooltip::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: -10px;
+    margin-left: -50px; /* Przesunięcie strzałki na środek chmurki */
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent transparent; /* Kolor strzałki */
+}
+
+
+/* Stylizacja pola tekstowego dla niestandardowej weryfikacji */
+.textarea-wrapper input:invalid {
+    border-color: red;
+}
+
+/* Stylizacja przycisku OK */
+#submitButton {
+    padding: 10px 10px;
+    background-color:  #007ACC; /* Kolor jak navbar */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Animacja zmiany koloru tła */
+}
+
+#submitButton:hover {
+    background-color: blue; /* Kolor tła po najechaniu myszką */
+}
+
+
+.error-text {
+    display: none;
+    color: red;
+    font-size: 12px;
+    margin-top: -10px;
+}
+

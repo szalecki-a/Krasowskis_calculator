@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konwerter Współrzędnych</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="background">
+        <!-- Dodatkowy element na tło -->
+        <div class="background-image"></div>
+        <div class="navbar">
+                <div class="col col1"><a href="link_do_podstrony1">col1</a></div>
+                <div class="col col2"><a href="link_do_podstrony2">col2</a></div>
+                <div class="col col3"><a href="link_do_podstrony3">col3</a></div>
+                <div class="col col4"><a href="link_do_podstrony4">col4</a></div>
+                <div class="col col5"><a href="link_do_podstrony5">col5</a></div>
+            </div>
+        </div>
+        <!-- Wrapper dla treści -->
+        <div class="content-wrapper">
+            <div class="content">
+                <h1>Konwerter Współrzędnych</h1>
+                <h2>Wprowadź dane</h2>
+                    <div class="input-wrapper">
+                        <label for="inputList">Format współrzędnych wejściowych:</label>
+                        <div class="input-container">
+                            <select id="inputList">
+                                <option value="empty"></option>
+                                <option value="opcja1">Układ współrzędnych 1942 (x, y)</option>
+                                <option value="opcja2">Układ współrzędnych 1965 (x, y)</option>
+                                <option value="opcja3">Układ współrzędnych 1992 (x, y)</option>
+                                <option value="opcja4">Układ współrzędnych 2000 (x, y)</option>
+                                <option value="opcja5">Szerokości geograficzne Krasowskiego (B, L)</option>
+                                <option value="opcja6">Szerokości geograficzne WGS-84 (B, L)</option>
+                            </select>
+                            <div class="informator" id="informator1" data-tekst=""></div>
+                            <div class="tooltip" id="tooltip1"></div>
+                        </div>
+                    </div>
+                    <div class="input-wrapper" id="axial1942in">
+                        <label for="axial1942">Południk osiowy:</label>
+                        <input type="radio" id="axial1942_15in" name="axial1942" value="15" checked>
+                        <label for="axial1942_15">15</label>
+                        <input type="radio" id="axial1942_21in" name="axial1942" value="21">
+                        <label for="axial1942_21">21</label>
+                    </div>
+                    <div class="input-wrapper" id="zonerow1965in">
+                        <label for="zone1">Strefa:</label>
+                        <input type="radio" id="zone1in" name="zone" value="1" checked>
+                        <label for="zone1">1</label>
+                        <input type="radio" id="zone2in" name="zone" value="2">
+                        <label for="zone2">2</label>
+                        <input type="radio" id="zone3in" name="zone" value="3">
+                        <label for="zone3">3</label>
+                        <input type="radio" id="zone4in" name="zone" value="4">
+                        <label for="zone4">4</label>
+                        <input type="radio" id="zone5in" name="zone" value="5">
+                        <label for="zone5">5</label>
+                    </div>
+                    <div class="input-wrapper" id="axial2000in">
+                        <label for="axial2000">Południk osiowy:</label>
+                        <input type="radio" id="axial2000_15in" name="axial2000" value="15" checked>
+                        <label for="axial2000_15">15</label>
+                        <input type="radio" id="axial2000_18in" name="axial2000" value="18">
+                        <label for="axial2000_18">18</label>
+                        <input type="radio" id="axial2000_21in" name="axial2000" value="21">
+                        <label for="axial2000_21">21</label>
+                        <input type="radio" id="axial2000_24in" name="axial2000" value="24">
+                        <label for="axial2000_24">21</label>
+                    </div>
+                    <div class="input-wrapper" id="formatblin">
+                        <label for="formatblin">Format współrzędnych:</label>
+                        <input type="radio" id="formatblin1" name="formatblin" value="1" checked>
+                        <label for="formatblin">dziesiętny</label>
+                        <input type="radio" id="formatblin2" name="formatblin" value="2">
+                        <label for="formatblin">stopniowy</label>
+                    </div>
+                    <div class="input-wrapper textarea-wrapper">
+                        <label for="inputText">Współrzędne:</label>
+                        <textarea id="inputText" placeholder="Wybierz typ współrzędnych wejściowych" pattern="[NnSsWwEe0-9 ,.;'&quot;°]*"></textarea>
+                        <p class="error-text" id="errorMessage"></p>
+                    </div>
+                    <div class="input-wrapper">
+                        <label for="inputList2">Format współrzędnych wyjściowych:</label>
+                        <div class="input-container">
+                            <select id="inputList2"></select>
+                            <div class="informator" id="informator2" data-tekst=""></div>
+                            <div class="tooltip" id="tooltip2"></div>
+                        </div>
+                    </div>
+                    <div class="input-wrapper" id="axial1942out">
+                        <label for="axial1942">Południk osiowy:</label>
+                        <input type="radio" id="axial1942_15out" name="axial1942" value="15" checked>
+                        <label for="axial1942_15">15</label>
+                        <input type="radio" id="axial1942_21out" name="axial1942" value="21">
+                        <label for="axial1942_21">21</label>
+                    </div>
+                    <div class="input-wrapper" id="zonerow1965out">
+                        <label for="zone1">Strefa:</label>
+                        <input type="radio" id="zone1out" name="zone" value="1" checked>
+                        <label for="zone1">1</label>
+                        <input type="radio" id="zone2out" name="zone" value="2">
+                        <label for="zone2">2</label>
+                        <input type="radio" id="zone3out" name="zone" value="3">
+                        <label for="zone3">3</label>
+                        <input type="radio" id="zone4out" name="zone" value="4">
+                        <label for="zone4">4</label>
+                        <input type="radio" id="zone5out" name="zone" value="5">
+                        <label for="zone5">5</label>
+                    </div>
+                    <div class="input-wrapper" id="axial2000out">
+                        <label for="axial2000">Południk osiowy:</label>
+                        <input type="radio" id="axial2000_15out" name="axial2000" value="15" checked>
+                        <label for="axial2000_15">15</label>
+                        <input type="radio" id="axial2000_18out" name="axial2000" value="18">
+                        <label for="axial2000_18">18</label>
+                        <input type="radio" id="axial2000_21out" name="axial2000" value="21">
+                        <label for="axial2000_21">21</label>
+                        <input type="radio" id="axial2000_24out" name="axial2000" value="24">
+                        <label for="axial2000_24">21</label>
+                    </div>
+                    <div class="input-wrapper" id="formatblout">
+                        <label for="formatblout">Format współrzędnych:</label>
+                        <input type="radio" id="formatblout1" name="formatblout" value="1" checked>
+                        <label for="formatblout">dziesiętny</label>
+                        <input type="radio" id="formatblout2" name="formatblout" value="2">
+                        <label for="formatblout">stopniowy</label>
+                    </div>                
+                <button id="submitButton">Przelicz</button>
+                <div class="output-container">
+                    <h2>Przeliczone Współrzędne</h2>
+                    <textarea id="outputContainer">Tutaj będzie wyświetlane wyjście z backendu.</textarea>
+                </div>
+            </div>                                                            
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='js/listsselection.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/informator.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/textarea.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/data.js') }}"></script>
+</body>
+</html>
